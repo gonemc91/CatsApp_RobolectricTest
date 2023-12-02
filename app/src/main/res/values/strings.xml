@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Cats on Activity</string>
+    <string name="app_name">😼Cats(robolectric) </string>
     <string name="cats">Cats: %1$d … %2$d</string>
     <string name="go_back">Go Back</string>
 
-    <string name="activity_cats">Cats on Activity 😼</string>
-    <string name="activity_fragments">Cats on Fragments 😼</string>
-    <string name="activity_nav_component">Cats on NavComponent 😼</string>
+    <string name="activity_cats">😼Activity Cats(robolectric)</string>
+    <string name="activity_fragments">😼Fragments Cats(robolectric)</string>
+    <string name="activity_nav_component">😼NavComponentCats(robolectric) </string>
 
     <string name="activity_cat_details">Cat Details</string>
 

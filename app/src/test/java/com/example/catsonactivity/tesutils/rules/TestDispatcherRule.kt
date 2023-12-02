@@ -1,4 +1,4 @@
-package com.example.catsonactivity.testutils.rule
+package com.example.catsonactivity.tesutils.rules
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestDispatcher
@@ -10,21 +10,20 @@ import org.junit.runner.Description
 
 
 /**
- * This test rules replaces a main coroutines dispatcher by the specified
- * [TestDispatcher]
+ * This test rule replaces a main coroutine dispatcher by the specified
+ * [TestDispatcher].
  */
 
-class TestViewModelScopeRule (
+class TestDispatcherRule (
     private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
-): TestWatcher(){
-    override fun starting(description: Description) {
+) : TestWatcher() {
 
+    override fun starting(description: Description?) {
         super.starting(description)
         Dispatchers.setMain(testDispatcher)
     }
 
-
-    override fun finished(description: Description) {
+    override fun finished(description: Description?) {
         super.finished(description)
         Dispatchers.resetMain()
     }

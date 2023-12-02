@@ -1,4 +1,4 @@
-package com.example.catsonactivity.testutils
+package com.example.catsonactivity.tesutils
 
 import android.content.ComponentName
 import android.content.Intent
@@ -8,15 +8,13 @@ import androidx.test.core.app.ApplicationProvider
 import com.example.catsonactivity.testutils.fragments.TestFragmentActivity
 
 /**
- * Launch a fragment manager by Hilt in the test activity container.
+ * Launch a fragment managed by Hilt in the test activity container.
  *
- * @see TestFraggmentActivity
- *
+ * @see TestFragmentActivity
  */
-
 inline fun <reified T : Fragment> launchHiltFragment(
-    noinline creator:  (()->T)? = null
-): AutoCloseable{
+    noinline creator: (() -> T)? = null
+): ActivityScenario<*> {
     val intent = Intent.makeMainActivity(
         ComponentName(
             ApplicationProvider.getApplicationContext(),
@@ -24,7 +22,7 @@ inline fun <reified T : Fragment> launchHiltFragment(
         )
     )
 
-    return ActivityScenario.launch<TestFragmentActivity>(intent).onActivity{
+    return ActivityScenario.launch<TestFragmentActivity>(intent).onActivity {
         val fragment = creator?.invoke() ?: it.supportFragmentManager.fragmentFactory.instantiate(
             T::class.java.classLoader!!,
             T::class.java.name

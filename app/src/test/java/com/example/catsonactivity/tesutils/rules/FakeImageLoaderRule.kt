@@ -1,10 +1,10 @@
-package com.example.catsonactivity.testutils.rule
+package com.example.catsonactivity.tesutils.rules
 
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import coil.Coil
 import coil.ImageLoader
-import com.example.catsonactivity.testutils.FakeImageLoader
+import com.example.catsonactivity.tesutils.imageloader.FakeImageLoader
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
@@ -14,17 +14,18 @@ import org.junit.runner.Description
  * @see FakeImageLoader
  */
 
+class FakeImageLoaderRule: TestWatcher() {
 
-class FakeImageLoaderRule : TestWatcher() {
-
-    override fun starting(description: Description) {
+    override fun starting(description: Description?) {
         super.starting(description)
         Coil.setImageLoader(FakeImageLoader())
     }
 
-    override fun finished(description: Description) {
+    override fun finished(description: Description?) {
         super.finished(description)
-        val defaultLoader = ImageLoader(ApplicationProvider.getApplicationContext< Application>())
+        val defaultLoader = ImageLoader(ApplicationProvider.getApplicationContext<Application>())
         Coil.setImageLoader(defaultLoader)
     }
+
+
 }
